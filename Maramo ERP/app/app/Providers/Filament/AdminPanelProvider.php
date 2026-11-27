@@ -35,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('Maramo Beauty Institute')
             ->databaseNotifications()
             ->profile()
-            ->maxContentWidth(\Filament\Support\Enums\MaxWidth::Full)
+            ->maxContentWidth('full')
             ->font('Plus Jakarta Sans', provider: \Filament\FontProviders\GoogleFontProvider::class)
             ->colors([
                 'primary' => [
