@@ -59,10 +59,10 @@ class RolesAndPermissionsSeeder extends Seeder
         Role::findOrCreate('Parent', 'web')->syncPermissions($installed(self::PARENT_PERMISSIONS));
         Role::findOrCreate('Viewer', 'web')->syncPermissions(self::viewerPermissions($all));
 
-        User::where('email', 'admin@example.com')->first()?->assignRole('Admin');
-        User::where('email', 'teacher@example.com')->first()?->assignRole('Teacher');
-        User::where('email', 'student@example.com')->first()?->assignRole('Student');
-        User::where('email', 'parent@example.com')->first()?->assignRole('Parent');
-        User::where('email', 'viewer@example.com')->first()?->assignRole('Viewer');
+        User::whereIn('email', ['admin@maramobeauty.com', 'admin@example.com'])->get()->each->assignRole('Admin');
+        User::whereIn('email', ['instructor@maramobeauty.com', 'teacher@example.com'])->get()->each->assignRole('Teacher');
+        User::whereIn('email', ['student@example.com'])->get()->each->assignRole('Student');
+        User::whereIn('email', ['parent@example.com'])->get()->each->assignRole('Parent');
+        User::whereIn('email', ['viewer@maramobeauty.com', 'viewer@example.com'])->get()->each->assignRole('Viewer');
     }
 }

@@ -38,6 +38,9 @@ if [ "$(php artisan tinker --execute='echo \Classivo\Core\Models\School::count()
   php artisan db:seed --class=MaramoCertificateSeeder --force
 fi
 
+# Ensure Admin role is always assigned to admin@maramobeauty.com
+php artisan tinker --execute="\$role = \Spatie\Permission\Models\Role::firstOrCreate(['name' => 'Admin', 'guard_name' => 'web']); \$u = \App\Models\User::where('email', 'admin@maramobeauty.com')->orWhere('id', 1)->first(); if (\$u) \$u->assignRole(\$role);" || true
+
 php artisan optimize:clear
 
 exec php artisan serve --host=0.0.0.0 --port=8000
