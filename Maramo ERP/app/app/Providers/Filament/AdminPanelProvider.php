@@ -35,7 +35,41 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('Maramo Beauty Institute')
             ->databaseNotifications()
             ->profile()
-            ->colors(['primary' => Color::Amber])
+            ->font('Plus Jakarta Sans', provider: \Filament\FontProviders\GoogleFontProvider::class)
+            ->colors([
+                'primary' => [
+                    50 => '#fbf8f5',
+                    100 => '#f5ede6',
+                    200 => '#ebd7c9',
+                    300 => '#ddbaa4',
+                    400 => '#cb977a',
+                    500 => '#be7b56',
+                    600 => '#aa6544',
+                    700 => '#8d5038',
+                    800 => '#744230',
+                    900 => '#60392b',
+                    950 => '#351c14',
+                ],
+                'gray' => Color::Stone,
+            ])
+            ->navigationGroups([
+                'Admissions & CRM',
+                'Student Management',
+                'Courses & Intakes',
+                'Fees & Payments',
+                'Graduation & Certificates',
+                'Instructors & Staff',
+                'Reports & Analytics',
+                'Institute Settings',
+            ])
+            ->renderHook(
+                PanelsRenderHook::HEAD_END,
+                fn () => view('filament.custom-theme-head')
+            )
+            ->renderHook(
+                PanelsRenderHook::SIDEBAR_NAV_START,
+                fn () => view('filament.custom-sidebar-brand')
+            )
             ->plugins(Modules::plugins(Modules::ADMIN_PLUGINS))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'navigation_group' => 'Students',
-    'attendance_group' => 'Attendance',
+    'navigation_group' => 'Student Management',
+    'attendance_group' => 'Student Management',
     'resources' => [
         'student' => 'Student',
         'students' => 'Students',

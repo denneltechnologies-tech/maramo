@@ -26,11 +26,8 @@ class ReportCardsPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            ReportCardTemplateResource::class,
-            CertificateTemplateResource::class,
-            IdCardTemplateResource::class,
             GeneratedCertificateResource::class,
-            TransferCertificateResource::class,
+            CertificateTemplateResource::class,
         ]);
     }
 

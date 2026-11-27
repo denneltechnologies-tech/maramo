@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ReportsHub extends Page
 {
-    protected static \UnitEnum|string|null $navigationGroup = 'Reports';
+    protected static \UnitEnum|string|null $navigationGroup = 'Reports & Analytics';
 
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentChartBar;
 

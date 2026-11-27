@@ -34,13 +34,9 @@ class StudentsPlugin implements Plugin
         $panel
             ->resources([
                 StudentResource::class,
-                GuardianResource::class,
-                StudentCategoryResource::class,
             ])
             ->pages([
                 TakeAttendance::class,
-                TakeSubjectAttendance::class,
-                StudentPromotion::class,
             ]);
     }
 

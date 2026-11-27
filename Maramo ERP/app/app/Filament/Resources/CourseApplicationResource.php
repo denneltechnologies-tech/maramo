@@ -29,11 +29,11 @@ class CourseApplicationResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
-    protected static \UnitEnum|string|null $navigationGroup = 'Admissions';
+    protected static \UnitEnum|string|null $navigationGroup = 'Admissions & CRM';
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationLabel = 'Course Applications';
+    protected static ?string $navigationLabel = 'Admissions Pipeline';
 
     public static function form(Schema $schema): Schema
     {
@@ -105,18 +105,43 @@ class CourseApplicationResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('application_no')->label('App No.')->searchable()->sortable(),
-                TextColumn::make('full_name')->label('Applicant Name')->searchable(['first_name', 'last_name']),
-                TextColumn::make('phone')->label('Phone / WhatsApp')->copyable()->searchable(),
-                TextColumn::make('course.name')->label('Program')->sortable(),
-                TextColumn::make('intake.name')->label('Intake')->sortable(),
-                TextColumn::make('preferred_schedule')
-                    ->label('Schedule')
-                    ->formatStateUsing(fn ($state) => CourseApplication::SCHEDULES[$state] ?? ucfirst($state)),
-                TextColumn::make('source')
-                    ->label('Source')
+                TextColumn::make('application_no')
+                    ->label('Ref No.')
+                    ->searchable()
+                    ->sortable()
+                    ->copyable()
+                    ->weight('bold')
+                    ->description(fn (CourseApplication $record) => $record->created_at?->format('M d, Y')),
+
+                TextColumn::make('full_name')
+                    ->label('Applicant')
+                    ->searchable(['first_name', 'last_name'])
+                    ->weight('bold')
+                    ->description(fn (CourseApplication $record) => $record->phone . ($record->city ? ' • ' . $record->city : '')),
+
+                TextColumn::make('course.name')
+                    ->label('Chosen Program')
+                    ->sortable()
+                    ->weight('medium')
+                    ->description(fn (CourseApplication $record) => CourseApplication::SCHEDULES[$record->preferred_schedule] ?? ucfirst($record->preferred_schedule ?? '')),
+
+                TextColumn::make('intake.name')
+                    ->label('Intake Cohort')
+                    ->sortable()
                     ->badge()
+                    ->color('gray'),
+
+                TextColumn::make('source')
+                    ->label('Channel')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'website' => 'info',
+                        'walk_in' => 'success',
+                        'referral' => 'warning',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn ($state) => CourseApplication::SOURCES[$state] ?? ucfirst($state)),
+
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
@@ -129,7 +154,6 @@ class CourseApplicationResource extends Resource
                         default => 'gray',
                     })
                     ->formatStateUsing(fn ($state) => CourseApplication::STATUSES[$state] ?? ucfirst($state)),
-                TextColumn::make('created_at')->label('Applied Date')->date()->sortable(),
             ])
             ->filters([
                 SelectFilter::make('status')->options(CourseApplication::STATUSES),

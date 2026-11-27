@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'navigation_group' => 'Human Resource',
+    'navigation_group' => 'Instructors & Staff',
     'nav' => [
-        'staff' => 'Staff Directory',
+        'staff' => 'Instructors & Staff Directory',
         'departments' => 'Departments',
         'designations' => 'Designations',
         'leave_types' => 'Staff Leave Types',

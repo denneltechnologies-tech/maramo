@@ -40,20 +40,6 @@ class HrPlugin implements Plugin
     {
         $panel->resources([
             StaffResource::class,
-            DepartmentResource::class,
-            DesignationResource::class,
-            StaffLeaveTypeResource::class,
-            StaffLeaveAllocationResource::class,
-            StaffLeaveRequestResource::class,
-            SalaryComponentResource::class,
-            StatutoryRuleSetResource::class,
-            AdvanceSalaryResource::class,
-            PayrollResource::class,
-        ])->pages([
-            TakeStaffAttendance::class,
-            StaffAttendanceReport::class,
-            GeneratePayroll::class,
-            SalaryDisbursement::class,
         ]);
     }
 

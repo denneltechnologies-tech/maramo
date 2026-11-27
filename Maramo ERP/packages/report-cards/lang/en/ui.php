@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'nav_group' => 'Documents',
+    'nav_group' => 'Graduation & Certificates',
     'report_card_templates' => 'Report Card Templates', 'report_card_template' => 'Report Card Template',
     'certificate_templates' => 'Certificate Templates', 'certificate_template' => 'Certificate Template',
     'id_card_templates' => 'ID Card Templates', 'id_card_template' => 'ID Card Template',

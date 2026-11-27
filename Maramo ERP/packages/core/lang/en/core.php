@@ -1,23 +1,23 @@
 <?php
 
 return [
-    'navigation_group' => 'Academics',
-    'settings_group' => 'School Setup',
+    'navigation_group' => 'Courses & Intakes',
+    'settings_group' => 'Institute Settings',
     'subject_types' => [
         'theory' => 'Theory',
-        'practical' => 'Practical',
+        'practical' => 'Practical Skills',
     ],
     'resources' => [
-        'branches' => 'Branches',
-        'branch' => 'Branch',
-        'academic_sessions' => 'Academic Sessions',
-        'academic_session' => 'Academic Session',
-        'classes' => 'Classes',
-        'class' => 'Class',
-        'sections' => 'Sections',
-        'section' => 'Section',
-        'subjects' => 'Subjects',
-        'subject' => 'Subject',
+        'branches' => 'Campuses',
+        'branch' => 'Campus',
+        'academic_sessions' => 'Training Intakes',
+        'academic_session' => 'Training Intake',
+        'classes' => 'Training Programs',
+        'class' => 'Training Program',
+        'sections' => 'Cohort Batches',
+        'section' => 'Cohort Batch',
+        'subjects' => 'Course Modules',
+        'subject' => 'Course Module',
     ],
     'fields' => [
         'name' => 'Name',

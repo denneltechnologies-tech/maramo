@@ -44,24 +44,15 @@ class FeesPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            FeeTypeResource::class,
-            FeeGroupResource::class,
+            FeePaymentResource::class,
             FeeMasterResource::class,
             FeeDiscountResource::class,
-            FeeDiscountStudentResource::class,
-            FeePaymentResource::class,
             FeeRefundResource::class,
-            OfflinePaymentResource::class,
         ]);
 
         $panel->pages([
             CollectFees::class,
-            AssignFees::class,
             SearchDueFees::class,
-            FeesReminder::class,
-            FeesCarryForward::class,
-            FeesSessionRollover::class,
-            FeeReports::class,
         ]);
     }
 
