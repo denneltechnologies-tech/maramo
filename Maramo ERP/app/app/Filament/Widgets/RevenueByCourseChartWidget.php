@@ -10,7 +10,12 @@ class RevenueByCourseChartWidget extends ChartWidget
 {
     protected static ?int $sort = 3;
 
-    protected static ?string $heading = 'Revenue Collected by Training Program (GH₵)';
+    protected ?string $heading = 'Revenue Collected by Training Program (GH₵)';
+
+    public function getHeading(): ?string
+    {
+        return $this->heading;
+    }
 
     protected int|string|array $columnSpan = 'full';
 
