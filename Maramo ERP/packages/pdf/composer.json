@@ -1,0 +1,54 @@
+{
+    "name": "classivo/pdf",
+    "description": "Small HTML-to-PDF contract for Laravel with a dompdf driver and an optional Chrome driver (spatie/browsershot) for scripts dompdf cannot shape, such as Devanagari.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "pdf",
+        "dompdf",
+        "browsershot",
+        "devanagari",
+        "hindi"
+    ],
+    "authors": [
+        {
+            "name": "Classivo Team",
+            "email": "info@classivoerp.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.0",
+        "barryvdh/laravel-dompdf": "^3.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "suggest": {
+        "spatie/browsershot": "Needed for the Chrome driver (also requires Chrome or Chromium on the server)."
+    },
+    "autoload": {
+        "psr-4": {
+            "Classivo\\Pdf\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Classivo\\Pdf\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Classivo\\Pdf\\PdfServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

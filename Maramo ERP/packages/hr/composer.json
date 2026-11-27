@@ -1,0 +1,84 @@
+{
+    "name": "classivo/hr",
+    "description": "Classivo ERP HR & payroll: staff, departments, attendance, leave, salary structures, payroll engine and an India statutory preset (PF/ESI/PT/TDS) over a country-neutral core.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "filament",
+        "school",
+        "erp",
+        "hr",
+        "payroll"
+    ],
+    "authors": [
+        {
+            "name": "Classivo Team",
+            "email": "info@classivoerp.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "classivo/core": "@dev",
+        "illuminate/support": "^12.0",
+        "illuminate/database": "^12.0",
+        "filament/filament": "^4.0",
+        "filament/spatie-laravel-media-library-plugin": "^4.0",
+        "classivo/pdf": "*@dev",
+        "barryvdh/laravel-dompdf": "^3.1",
+        "spatie/laravel-medialibrary": "^11.23"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "spatie/laravel-permission": "^6.0|^7.0",
+        "phpunit/phpunit": "^11.5"
+    },
+    "suggest": {
+        "spatie/laravel-permission": "Lets a staff member's role_id sync to the linked login's roles."
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../pdf",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../core",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Classivo\\Hr\\": "src/",
+            "Classivo\\Hr\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Classivo\\Hr\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Classivo\\Hr\\HrServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

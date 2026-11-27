@@ -1,0 +1,75 @@
+{
+    "name": "classivo/exams",
+    "description": "Classivo ERP exams: exam groups, schedules, marks entry, grading scale, divisions, result generation, ranking and publishing.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "filament",
+        "school",
+        "exams",
+        "marks",
+        "erp"
+    ],
+    "authors": [
+        {
+            "name": "Classivo Team",
+            "email": "info@classivoerp.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "classivo/core": "*",
+        "classivo/students": "*",
+        "filament/filament": "^4.0",
+        "illuminate/support": "^12.0",
+        "illuminate/database": "^12.0"
+    },
+    "require-dev": {
+        "spatie/laravel-permission": "^6.0|^7.0",
+        "orchestra/testbench": "^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../core",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../students",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Classivo\\Exams\\": "src/",
+            "Classivo\\Exams\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Classivo\\Exams\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Classivo\\Exams\\ExamsServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "suggest": {
+        "spatie/laravel-permission": "Provides the exam.enter_marks and exam.publish_result permissions checked by default"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

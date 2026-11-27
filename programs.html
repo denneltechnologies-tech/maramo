@@ -118,6 +118,69 @@
       </div>
     </section>
 
+    <section class="section section-soft" id="apply">
+      <div class="container split">
+        <div class="about-copy">
+          <p class="eyebrow">Online Enrollment</p>
+          <h2>Apply for Admission</h2>
+          <p>Begin your beauty career with practical, hands-on training from industry professionals. Submit your application online, and our admissions office will review your details and issue your official application reference number.</p>
+          <ul class="check-list">
+            <li>Immediate application reference number</li>
+            <li>Direct admission review by our faculty</li>
+            <li>Flexible schedules: Morning, Afternoon, or Weekend</li>
+            <li>Recognized certification upon completion</li>
+          </ul>
+        </div>
+        <div class="contact-form-wrap">
+          <form id="admission-form">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div class="field">
+                <label for="first_name">First Name *</label>
+                <input type="text" id="first_name" name="first_name" required placeholder="e.g. Ama">
+              </div>
+              <div class="field">
+                <label for="last_name">Last Name *</label>
+                <input type="text" id="last_name" name="last_name" required placeholder="e.g. Mensah">
+              </div>
+            </div>
+            <div class="field">
+              <label for="phone">Phone / WhatsApp Number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="e.g. 0546662554">
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="e.g. you@example.com">
+            </div>
+            <div class="field">
+              <label for="course_id">Desired Training Program *</label>
+              <select id="course_id" name="course_id" required>
+                <option value="">-- Select Training Program --</option>
+                <option value="1">Comprehensive Cosmetology (6 Months)</option>
+                <option value="2">Wig & Frontal Installation Mastery (2 Months)</option>
+                <option value="3">Professional Makeup Artistry (3 Months)</option>
+                <option value="4">Hairstyling & Braiding (2 Months)</option>
+                <option value="5">Nail Technology & Pedicure (1 Month)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="preferred_schedule">Preferred Schedule</label>
+              <select id="preferred_schedule" name="preferred_schedule">
+                <option value="morning">Morning Cohort (Mon - Wed)</option>
+                <option value="afternoon">Afternoon Cohort (Wed - Fri)</option>
+                <option value="weekend">Weekend Batch (Saturdays)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="prior_experience">Prior Beauty Experience</label>
+              <textarea id="prior_experience" name="prior_experience" rows="2" placeholder="Tell us if you are a beginner or looking to upgrade your skills..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-full" id="apply-submit-btn">Submit Application</button>
+            <div id="application-status" style="margin-top:1rem; display:none;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <section class="section cta-section page-cta">
       <div class="container cta-box">
         <div>

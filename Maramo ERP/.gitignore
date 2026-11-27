@@ -1,0 +1,19 @@
+/vendor/
+**/vendor/
+**/node_modules/
+composer.lock
+.phpunit.result.cache
+**/.phpunit.cache/
+.env
+.DS_Store
+/.idea
+/.vscode
+
+# internal working notes (never published)
+packages/**/REPORT.md
+packages/**/INTEGRATION.md
+packages/**/STATE.md
+packages/**/HANDOFF.md
+packages/**/PHASE1-REPORT*
+!app/composer.lock
+/.base-set/

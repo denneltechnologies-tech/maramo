@@ -1,0 +1,96 @@
+{
+    "name": "classivo/report-cards",
+    "description": "Report card, marksheet, certificate, ID card and transfer certificate PDF engine for Laravel (dompdf). Works standalone from plain data; optional Classivo adapter.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "pdf",
+        "dompdf",
+        "report-card",
+        "marksheet",
+        "certificate",
+        "school",
+        "cbse"
+    ],
+    "authors": [
+        {
+            "name": "Classivo Team",
+            "email": "info@classivoerp.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.0",
+        "illuminate/view": "^12.0",
+        "classivo/pdf": "*@dev",
+        "barryvdh/laravel-dompdf": "^3.0",
+        "chillerlan/php-qrcode": "^5.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "phpunit/phpunit": "^11.0",
+        "classivo/core": "*@dev",
+        "filament/filament": "^4.0",
+        "classivo/students": "*@dev",
+        "classivo/exams": "*@dev"
+    },
+    "suggest": {
+        "filament/filament": "Needed only for the optional ReportCardsPlugin (Filament UI).",
+        "classivo/core": "Needed for the Filament UI and the optional persistence layer (template/issued-certificate models and migrations).",
+        "classivo/exams": "Read marks and results through the optional ClassivoAdapter.",
+        "classivo/students": "Read students and guardians through the optional ClassivoAdapter."
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../pdf",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../core",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../students",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../exams",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Classivo\\ReportCards\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Classivo\\ReportCards\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Classivo\\ReportCards\\ReportCardsServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

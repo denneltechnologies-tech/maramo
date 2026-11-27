@@ -1,0 +1,67 @@
+{
+    "name": "classivo/timetable",
+    "description": "Classivo ERP timetable: class routines with clash detection, plus a framework-agnostic clash-free timetable generator.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "filament",
+        "school",
+        "timetable",
+        "scheduling",
+        "constraint-satisfaction",
+        "erp"
+    ],
+    "authors": [
+        {
+            "name": "Classivo Team",
+            "email": "info@classivoerp.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "classivo/core": "*",
+        "filament/filament": "^4.0",
+        "illuminate/support": "^12.0",
+        "illuminate/database": "^12.0"
+    },
+    "require-dev": {
+        "spatie/laravel-permission": "^6.0|^7.0",
+        "orchestra/testbench": "^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../core",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Classivo\\Timetable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Classivo\\Timetable\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Classivo\\Timetable\\TimetableServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "suggest": {
+        "spatie/laravel-permission": "Provides the timetable.view, timetable.edit and timetable.generate permissions checked by default"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

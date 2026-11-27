@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  packages:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.ls.outputs.list }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: ls
+        run: echo "list=$(ls -d packages/*/ | xargs -n1 basename | jq -R . | jq -s -c .)" >> "$GITHUB_OUTPUT"
+
+  test:
+    needs: packages
+    name: ${{ matrix.package }} (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.3', '8.4']
+        package: ${{ fromJSON(needs.packages.outputs.list) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl, pdo_sqlite, sqlite3, gd, zip
+          coverage: none
+      - name: Skip packages that are not present yet
+        id: present
+        run: |
+          if [ -f packages/${{ matrix.package }}/composer.json ]; then echo "ok=true" >> "$GITHUB_OUTPUT"; else echo "ok=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Install
+        if: steps.present.outputs.ok == 'true'
+        working-directory: packages/${{ matrix.package }}
+        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: PHPUnit
+        if: steps.present.outputs.ok == 'true'
+        working-directory: packages/${{ matrix.package }}
+        run: vendor/bin/phpunit
+
+  pint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+      - name: Pint (check only)
+        run: |
+          composer global require laravel/pint --no-interaction
+          "$(composer global config bin-dir --absolute)/pint" --test packages app
+
+  prepublish-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: bash scripts/prepublish-scan.sh .

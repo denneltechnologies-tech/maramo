@@ -1,0 +1,77 @@
+# One-command demo:  docker compose up
+# Then open http://localhost:8000/admin  (admin@example.com / password)
+# Student portal: http://localhost:8000/student  (student@example.com / password)
+# Parent portal:  http://localhost:8000/parent   (parent@example.com / password)
+#
+# The demo listens on 127.0.0.1 only and runs with APP_ENV=production and debug off,
+# so the sandbox payment gateway (local/testing only) and debug pages stay disabled.
+# The demo accounts use well-known passwords: do not expose this stack publicly.
+# For local development set APP_ENV=local APP_DEBUG=true before `docker compose up`.
+services:
+  app:
+    build:
+      context: ./docker/php
+    command: ["/var/www/docker/php/start.sh"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/var/www
+    environment:
+      APP_NAME: "Maramo Beauty Institute ERP"
+      APP_ENV: ${APP_ENV:-production}
+      APP_DEBUG: ${APP_DEBUG:-false}
+      CLASSIVO_ALLOW_DEMO_SEED: "true"
+      APP_URL: ${APP_URL:-http://localhost:8000}
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: classivo
+      DB_USERNAME: classivo
+      DB_PASSWORD: classivo
+      SESSION_DRIVER: file
+      CACHE_STORE: file
+      QUEUE_CONNECTION: sync
+      CLASSIVO_PRESET: ghana
+      FEES_CURRENCY: GHS
+      FEES_CURRENCY_SYMBOL: "GH₵"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  scheduler:
+    build:
+      context: ./docker/php
+    command: ["sh", "-c", "until [ -f /var/www/app/vendor/autoload.php ]; do sleep 5; done; php artisan schedule:work"]
+    volumes:
+      - ./:/var/www
+    environment:
+      APP_ENV: ${APP_ENV:-production}
+      APP_DEBUG: ${APP_DEBUG:-false}
+      CLASSIVO_ALLOW_DEMO_SEED: "true"
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: classivo
+      DB_USERNAME: classivo
+      DB_PASSWORD: classivo
+      CACHE_STORE: file
+    depends_on:
+      - app
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: classivo
+      MYSQL_USER: classivo
+      MYSQL_PASSWORD: classivo
+      MYSQL_ROOT_PASSWORD: classivo-root
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uclassivo", "-pclassivo"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql-data:

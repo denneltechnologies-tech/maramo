@@ -5,5 +5,35 @@ desktop.ini
 .vscode/
 .idea/
 
-# Temp
+# Temp & logs
 *.log
+
+# Dependencies
+vendor/
+**/vendor/
+node_modules/
+**/node_modules/
+
+# Environment & local credentials
+.env
+**/.env
+.env.backup
+.env.production
+!**/.env.example
+
+# Local SQLite databases & caches
+**/database/database.sqlite
+**/database/database.sqlite-journal
+**/.phpunit.cache/
+.phpunit.result.cache
+
+# Filament & Build caches
+**/public/build
+**/public/hot
+**/public/storage
+**/storage/*.key
+**/storage/pail
+**/storage/framework/cache/*
+**/storage/framework/sessions/*
+**/storage/framework/views/*
+**/storage/logs/*
