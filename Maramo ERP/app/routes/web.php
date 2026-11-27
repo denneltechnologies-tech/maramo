@@ -12,10 +12,23 @@ Route::prefix('api')->group(function () {
     Route::get('/verify-certificate/{code}', [PublicApiController::class, 'verifyCertificate']);
 });
 
-// The home page and the public school website come from classivo/cms. Without
-// that package the home page sends visitors to the admin sign-in.
-if (! class_exists(CmsPlugin::class)) {
-    Route::redirect('/', '/admin');
+// Serve Public Website Homepage and Clean URL Routes
+Route::get('/', function () {
+    $path = public_path('index.html');
+    if (file_exists($path)) {
+        return response()->file($path);
+    }
+    return redirect('/admin');
+});
+
+foreach (['about', 'services', 'programs', 'gallery', 'contact'] as $page) {
+    Route::get('/' . $page, function () use ($page) {
+        $path = public_path($page . '.html');
+        if (file_exists($path)) {
+            return response()->file($path);
+        }
+        return abort(404);
+    });
 }
 
 // Generic sign-in entry point (used by package routes behind the `auth`
