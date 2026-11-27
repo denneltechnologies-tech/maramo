@@ -2,7 +2,7 @@ services:
   erp:
     build:
       context: ./Maramo ERP/docker/php
-    command: ["/var/www/docker/php/start.sh"]
+    command: ["sh", "/var/www/docker/php/start.sh"]
     ports:
       - "8000:8000"
     volumes:
