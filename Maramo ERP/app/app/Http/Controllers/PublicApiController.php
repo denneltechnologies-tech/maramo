@@ -42,6 +42,14 @@ class PublicApiController extends Controller
     /** Handle online course applications from the website. */
     public function apply(Request $request): JsonResponse
     {
+        if ($request->has('full_name') && ! $request->has('first_name')) {
+            $parts = explode(' ', trim($request->input('full_name')), 2);
+            $request->merge([
+                'first_name' => $parts[0] ?? 'Applicant',
+                'last_name' => $parts[1] ?? 'Student',
+            ]);
+        }
+
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
