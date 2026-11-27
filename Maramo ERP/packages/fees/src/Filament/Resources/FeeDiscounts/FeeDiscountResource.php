@@ -48,7 +48,7 @@ class FeeDiscountResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return __('Fees Discount');
+        return __('Discounts & Concessions');
     }
 
     public static function getModelLabel(): string

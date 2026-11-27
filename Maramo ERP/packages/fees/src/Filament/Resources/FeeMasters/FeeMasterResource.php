@@ -48,7 +48,7 @@ class FeeMasterResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return __('Fees Master');
+        return __('Course Fees Setup');
     }
 
     public static function getModelLabel(): string

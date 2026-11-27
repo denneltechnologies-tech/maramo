@@ -56,7 +56,7 @@ class FeePaymentResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return __('Search Fees Payment');
+        return __('Payments & Receipts');
     }
 
     public static function getModelLabel(): string

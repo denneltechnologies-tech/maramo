@@ -49,7 +49,7 @@ class SearchDueFees extends FeesPage implements HasForms
 
     protected static function englishTitle(): string
     {
-        return 'Search Due Fees';
+        return 'Outstanding Student Balances';
     }
 
     public function mount(): void

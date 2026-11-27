@@ -53,7 +53,7 @@ class FeeRefundResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return __('Fee Refunds');
+        return 'Refunds & Adjustments';
     }
 
     public static function getModelLabel(): string

@@ -47,7 +47,12 @@ class CollectFees extends FeesPage
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBanknotes;
 
-    protected static ?int $navigationSort = 40;
+    protected static ?int $navigationSort = 10;
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Record Student Payment';
+    }
 
     public ?array $data = [];
 

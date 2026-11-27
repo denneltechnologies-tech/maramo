@@ -33,7 +33,7 @@ class AcademicSessionResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return __('classivo-core::core.settings_group');
+        return __('classivo-core::core.navigation_group');
     }
 
     public static function getModelLabel(): string
