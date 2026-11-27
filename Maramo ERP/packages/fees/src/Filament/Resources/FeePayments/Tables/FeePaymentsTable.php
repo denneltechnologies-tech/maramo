@@ -74,27 +74,29 @@ class FeePaymentsTable
                 // full_name is an accessor — sort by a real column (bare sortable()
                 // 500s the page on header click; Phase 2 CRUD-loop finding).
                 TextColumn::make('student.full_name')->label(__('Student'))->searchable(['first_name', 'last_name'])->sortable(['first_name']),
-                TextColumn::make('student.admission_no')->label(__('Admission no'))->searchable(),
+                TextColumn::make('student.admission_no')->label(__('Admission no'))->searchable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('mode')
                     ->badge()
                     ->formatStateUsing(fn (?string $state): string => FeePayment::MODES[$state] ?? ucfirst((string) $state)),
-                TextColumn::make('discount_amount')->label(__('Discount'))->money('INR')
-                    ->summarize(Sum::make()->money('INR')),
-                TextColumn::make('fine_amount')->label(__('Fine'))->money('INR')
-                    ->summarize(Sum::make()->money('INR')),
-                TextColumn::make('paid_amount')->label(__('Total paid'))->money('INR')->weight('bold')
-                    ->summarize(Sum::make()->money('INR')),
+                TextColumn::make('discount_amount')->label(__('Discount'))->money('GHS')
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->summarize(Sum::make()->money('GHS')),
+                TextColumn::make('fine_amount')->label(__('Fine'))->money('GHS')
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->summarize(Sum::make()->money('GHS')),
+                TextColumn::make('paid_amount')->label(__('Total paid'))->money('GHS')->weight('bold')
+                    ->summarize(Sum::make()->money('GHS')),
                 // From the correlated subquery on the resource query — no per-row
                 // lookup. Hidden by default so the unchanged default view stays
                 // unchanged for a school that never refunds anything.
                 TextColumn::make('refunded_total')
                     ->label(__('Refunded'))
-                    ->money('INR')
+                    ->money('GHS')
                     ->color('danger')
                     ->placeholder('—')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('collector.name')->label(__('Collected by'))->placeholder('—'),
+                TextColumn::make('collector.name')->label(__('Collected by'))->placeholder('—')->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn (?string $state): string => $state === 'reverted' ? 'danger' : 'success'),

@@ -235,8 +235,8 @@ class StudentResource extends Resource
                 TextColumn::make('full_name')->label($f('full_name'))
                     ->searchable(['first_name', 'middle_name', 'last_name']),
                 TextColumn::make('classSection.name')->label($f('class_section'))->placeholder('—'),
-                TextColumn::make('roll_no')->label($f('roll_no'))->placeholder('—'),
-                TextColumn::make('gender')->label($f('gender'))
+                TextColumn::make('roll_no')->label($f('roll_no'))->placeholder('—')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('gender')->label($f('gender'))->toggleable(isToggledHiddenByDefault: true)
                     ->formatStateUsing(fn (?string $state): string => $state ? __('classivo-students::students.genders.'.$state) : '—'),
                 TextColumn::make('mobile')->label($f('mobile'))->placeholder('—'),
                 TextColumn::make('status')->label($f('status'))->badge()

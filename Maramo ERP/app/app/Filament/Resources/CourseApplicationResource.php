@@ -120,16 +120,17 @@ class CourseApplicationResource extends Resource
                     ->description(fn (CourseApplication $record) => $record->phone . ($record->city ? ' • ' . $record->city : '')),
 
                 TextColumn::make('course.name')
-                    ->label('Chosen Program')
+                    ->label('Program & Schedule')
                     ->sortable()
-                    ->weight('medium')
-                    ->description(fn (CourseApplication $record) => CourseApplication::SCHEDULES[$record->preferred_schedule] ?? ucfirst($record->preferred_schedule ?? '')),
+                    ->weight('semibold')
+                    ->description(fn (CourseApplication $record) => (CourseApplication::SCHEDULES[$record->preferred_schedule] ?? ucfirst($record->preferred_schedule ?? '')) . ($record->intake ? ' (' . $record->intake->name . ')' : '')),
 
                 TextColumn::make('intake.name')
                     ->label('Intake Cohort')
                     ->sortable()
                     ->badge()
-                    ->color('gray'),
+                    ->color('gray')
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('source')
                     ->label('Channel')

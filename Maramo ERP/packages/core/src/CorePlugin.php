@@ -38,7 +38,6 @@ class CorePlugin implements Plugin
             AcademicSessionResource::class,
             SchoolClassResource::class,
             SectionResource::class,
-            SubjectResource::class,
         ]);
     }
 
